@@ -17,15 +17,15 @@ owner: Módulo 4 – UMSS
 
 # Skill: AC Gherkin del FSD → tests de aceptación automatizados
 
-> Skill canónica del módulo. Para activarla en Claude Code o Claude Desktop,
-> copia esta carpeta a `~/.claude/skills/fsd-gherkin-a-tests-aceptacion/` o a
-> `.claude/skills/fsd-gherkin-a-tests-aceptacion/` en la raíz del repo del grupo.
+> **Propósito**: Normalizar la conversión de criterios de aceptación BDD (Gherkin) en pruebas unitarias, de integración o de rendimiento k6, asegurando trazabilidad y el uso de fixtures realistas del dominio universitario.
+
+---
 
 ## 1. Cuándo activarlo (triggers)
 
-- DURANTE: cierre de un UC ya implementado o validación previa al merge.
-- ARRANCA cuando: el UC del FSD ya tiene bloque ` ```gherkin … ``` ` y el código existe (o se está generando a la par con `fsd-uc-a-vertical-slice`).
-- NO ACTIVAR cuando: aún no hay bloque Gherkin en el FSD (eso es trabajo del FSD, no de este Skill).
+- **DURANTE**: Cierre de un UC ya implementado o validación previa al merge.
+- **ARRANCA cuando**: El UC del FSD ya tiene bloque ` ```gherkin ... ``` ` y el código existe (o se está generando a la par con `fsd-uc-a-vertical-slice`).
+- **NO ACTIVAR cuando**: Aún no hay bloque Gherkin en el FSD (eso es trabajo de la especificación funcional, no de este Skill).
 
 ## 2. Entradas obligatorias
 
@@ -68,11 +68,11 @@ owner: Módulo 4 – UMSS
 - Si hay NFR: `infra/perf/<uc>.js` (k6) con umbrales codificados como `thresholds` k6.
 - Tabla de trazabilidad obligatoria al cerrar el PR:
 
-| AC del FSD     | NFR vinculado | Archivo de test                                         | Tipo            |
-|----------------|---------------|---------------------------------------------------------|-----------------|
-| FSD-UC-002 AC1 | —             | `inscripcion.feature` escenario `estudiante al día`     | Cucumber        |
-| FSD-UC-002 AC2 | —             | `SaldoTest#bloqueaSiVencido`                            | JUnit unit      |
-| FSD-UC-002 AC3 | NFR-001       | `infra/perf/inscripcion.js`                             | k6 (p95<100 ms) |
+| AC del FSD | NFR vinculado | Archivo de test | Tipo |
+|------------|---------------|-----------------|------|
+| FSD-UC-002 AC1 | —             | `inscripcion.feature` escenario `estudiante al día` | Cucumber |
+| FSD-UC-002 AC2 | —             | `SaldoTest#bloqueaSiVencido` | JUnit unit |
+| FSD-UC-002 AC3 | NFR-001       | `infra/perf/inscripcion.js` | k6 (p95 < 100 ms) |
 
 ## 6. Verificación
 
@@ -102,6 +102,6 @@ owner: Módulo 4 – UMSS
 
 ## 10. Registro de cambios
 
-| Versión | Fecha       | Autor                  | Cambio          |
-|---------|-------------|------------------------|-----------------|
-| 0.1.0   | 04/05/2026  | M.Sc. Edson Terceros   | versión inicial |
+| Versión | Fecha | Autor | Cambio |
+|---------|-------|-------|--------|
+| 0.1.0 | 04/05/2026 | M.Sc. Edson Terceros | versión inicial |
