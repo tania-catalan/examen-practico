@@ -109,7 +109,8 @@ Comportamiento concreto:
 - [ ] 8. Calcular métricas de esta ejecución (docs/METRICS.md)
 - [ ] 9. Añadir subsección ### Ejecución K en ## Métricas (sin tocar ejecuciones anteriores)
 - [ ] 10. Crear docs/<area>/ si no existe; escribir/actualizar el artefacto
-- [ ] 11. Informar al usuario: prompt usado, ruta de salida, número de ejecución de métricas
+- [ ] 11. Actualizar [`docs/PROMPT_MAPPING.md`](../../docs/PROMPT_MAPPING.md): Run ID, fecha, artefacto, autor, modelo, temperatura (§2 y §3)
+- [ ] 12. Informar al usuario: prompt usado, ruta de salida, número de ejecución de métricas
 ```
 
 ---
