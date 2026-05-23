@@ -1,0 +1,22 @@
+C4Context
+title FTGO – Diagrama de contexto (nivel 1)
+
+Person(consumer, "Consumidor", "Ordena comida vía app móvil/web")
+Person(restaurant, "Restaurante", "Gestiona tickets de cocina")
+Person(courier, "Courier", "Entrega pedidos")
+Person(backoffice, "Empleado FTGO", "Soporte, operaciones y reportes")
+
+System(ftgo, "FTGO Platform", "Marketplace de delivery de comida")
+
+System_Ext(stripe, "Stripe", "Pasarela de pago")
+System_Ext(maps, "Google Maps", "Mapas y rutas")
+System_Ext(notify, "SendGrid/Twilio", "Notificaciones email/SMS")
+
+Rel(consumer, ftgo, "Realiza pedidos y consulta tracking", "HTTPS")
+Rel(restaurant, ftgo, "Gestiona tickets de pedido", "HTTPS")
+Rel(courier, ftgo, "Acepta y ejecuta entregas", "HTTPS")
+Rel(backoffice, ftgo, "Opera y resuelve incidentes", "HTTPS")
+
+Rel(ftgo, stripe, "Procesa pagos", "HTTPS/API")
+Rel(ftgo, maps, "Obtiene rutas y geocodificación", "HTTPS/API")
+Rel(ftgo, notify, "Envía confirmaciones y alertas", "HTTPS/API")

@@ -20,7 +20,7 @@ Referenciado desde [`docs/prompts/PROMPT.md`](prompts/PROMPT.md) y el skill [`ag
 | **PRD** | [`prompts/PRD_v1.md`](prompts/PRD_v1.md) | `PR-PRD-FTGO-001` | v1 | 22/05/2026 | Módulo 4 - UMSS | Sonnet / Opus | 0.2 | `docs/prd/` |
 | **FSD** | [`prompts/FSD_v1.md`](prompts/FSD_v1.md) | `PR-FSD-FTGO-001` | v1 | 22/05/2026 | Módulo 4 - UMSS | Sonnet | 0.2 | `docs/fsd/` |
 | **ADR** | [`prompts/ADR_v1.md`](prompts/ADR_v1.md) | `PR-ADR-FTGO-001` | v1 | 22/05/2026 | Módulo 4 - UMSS | Opus | 0.3 | `docs/adr/` |
-| **C4** | [`prompts/C4_N1_N2_v1.md`](prompts/C4_N1_N2_v1.md) | `PR-C4-FTGO-001` | v1 | 22/05/2026 | Módulo 4 - UMSS | Sonnet / Opus | 0.2 | `docs/c4/` |
+| **C4** | [`prompts/C4_N1_N2_v2.md`](prompts/C4_N1_N2_v2.md) | `PR-C4-FTGO-001` | v2 | 23/05/2026 | Módulo 4 - UMSS | Sonnet / Opus | 0.2 | `docs/c4/` |
 
 > **Plantillas no ejecutables** (semilla, sin sufijo `_vN`): `PRD.md`, `FSD.md`, `ADR.md`, `C4_N1_N2.md` en `docs/prompts/`.
 
@@ -38,12 +38,9 @@ Columna **Modelo (ejecución)**: valor real usado en la corrida. Si el artefacto
 | `20260523-180000-0400-adr0001` | 2026-05-23T18:00:00-04:00 | `PR-ADR-FTGO-001` | v1 | *estrategia de descomposición* | [`adr/ADR-0001.md`](adr/ADR-0001.md) | Módulo 4 - UMSS | Según prompt (Opus) | 0.3 | Accepted |
 | `20260523-180500-0400-adr0002` | 2026-05-23T18:05:00-04:00 | `PR-ADR-FTGO-001` | v1 | *mecanismo IPC predominante* | [`adr/ADR-0002.md`](adr/ADR-0002.md) | Módulo 4 - UMSS | Según prompt (Opus) | 0.3 | Accepted |
 | `20260523-181000-0400-adr0003` | 2026-05-23T18:10:00-04:00 | `PR-ADR-FTGO-001` | v1 | *estrategia de datos / consistencia* | [`adr/ADR-0003.md`](adr/ADR-0003.md) | Módulo 4 - UMSS | Según prompt (Opus) | 0.3 | Accepted |
+| `20260523-190000-0400-c4` | 2026-05-23T19:00:00-04:00 | `PR-C4-FTGO-001` | v2 | N1+N2; PRD_v2 + ADR 0001–0003 | [`c4/C4_N1_N2_v1.md`](c4/C4_N1_N2_v1.md) (+ `c4_context.mmd`, `c4_container.mmd`) | Módulo 4 - UMSS | Según prompt (Sonnet/Opus) | 0.2 | Generado |
 
-**Pendiente de ejecución**
-
-| Tipo | Prompt | Artefacto esperado |
-| --- | --- | --- |
-| C4 | `PR-C4-FTGO-001` / v1 | `docs/c4/C4_N1_N2_v1.md` |
+**Pendiente de ejecución:** ninguno (catálogo base completo).
 
 ---
 
@@ -73,9 +70,10 @@ Un mismo prompt v1; cada decisión se materializa en un archivo `ADR-NNNN.md` (p
 
 ### C4 (`PR-C4-FTGO-001`)
 
-| Versión prompt | Artefactos generados | Ejecuciones |
+| Versión prompt | Artefactos generados | Ejecuciones (Run ID) |
 | --- | --- | --- |
-| v1 | — | — |
+| v1 | — | — (supersedido por prompt v2) |
+| v2 | `C4_N1_N2_v1.md`, `c4_context.mmd`, `c4_container.mmd` | `20260523-190000-0400-c4` |
 
 ---
 
@@ -89,6 +87,7 @@ Un mismo prompt v1; cada decisión se materializa en un archivo `ADR-NNNN.md` (p
 | [`ADR-0001.md`](adr/ADR-0001.md) | — | `PR-ADR-FTGO-001` / v1 | 2026-05-23T18:00:00-04:00 | Módulo 4 - UMSS | Opus | 0.3 |
 | [`ADR-0002.md`](adr/ADR-0002.md) | — | `PR-ADR-FTGO-001` / v1 | 2026-05-23T18:05:00-04:00 | Módulo 4 - UMSS | Opus | 0.3 |
 | [`ADR-0003.md`](adr/ADR-0003.md) | — | `PR-ADR-FTGO-001` / v1 | 2026-05-23T18:10:00-04:00 | Módulo 4 - UMSS | Opus | 0.3 |
+| [`C4_N1_N2_v1.md`](c4/C4_N1_N2_v1.md) | v1 | `PR-C4-FTGO-001` / v2 | 2026-05-23T19:00:00-04:00 | Módulo 4 - UMSS | Sonnet / Opus | 0.2 |
 
 ---
 
@@ -114,3 +113,4 @@ Al cerrar una ejecución con el skill **ejecutar-prompt-artefacto**:
 | Fecha | Autor | Cambio |
 | --- | --- | --- |
 | 2026-05-23 | Módulo 4 - UMSS | Creación inicial: PRD v1/v2, FSD v1, ADR 0001–0003; C4 pendiente. |
+| 2026-05-23 | Módulo 4 - UMSS | Ejecución C4 con prompt v2: `C4_N1_N2_v1.md` + diagramas `.mmd`. |

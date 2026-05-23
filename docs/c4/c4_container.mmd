@@ -1,0 +1,61 @@
+C4Container
+title FTGO – Diagrama de contenedores (nivel 2)
+
+Person(consumer, "Consumidor", "Ordena comida")
+Person(restaurant, "Restaurante", "Gestiona cocina")
+Person(courier, "Courier", "Entrega pedidos")
+Person(backoffice, "Empleado FTGO", "Back office")
+
+System_Boundary(ftgo, "FTGO Platform") {
+    Container(mobile_app, "Mobile App", "React Native", "App consumidor [UC-01, UC-05]")
+    Container(web_dash, "Web Dashboard", "Web SPA", "Restaurante y back office [UC-02]")
+    Container(courier_app, "Courier App", "React Native", "Entregas [UC-03, UC-06]")
+
+    Container(legacy, "Monolith Legacy", "Java WAR", "Coexistencia Strangler [ADR-0001]")
+
+    Container(order_svc, "Order Service", "Java/Spring Boot", "Order Taking [ADR-0001 Fase 1]")
+    Container(kitchen_svc, "Kitchen Service", "Java/Spring Boot", "Order Fulfillment [ADR-0001 Fase 2]")
+    Container(delivery_svc, "Delivery Service", "Java/Spring Boot", "Delivery [ADR-0001 Fase 3]")
+    Container(billing_svc, "Billing Service", "Java/Spring Boot", "Pagos y retry [UC-04, ADR-0003]")
+    Container(notify_svc, "Notification Service", "Java/Spring Boot", "Notificaciones [UC-05]")
+
+    Container(kafka, "Kafka Broker", "Apache Kafka", "Eventos dominio [ADR-0002]")
+
+    ContainerDb(order_db, "Order DB", "PostgreSQL", "Aggregate pedido [ADR-0003]")
+    ContainerDb(kitchen_db, "Kitchen DB", "PostgreSQL", "Tickets cocina [ADR-0003]")
+    ContainerDb(delivery_db, "Delivery DB", "PostgreSQL", "Entregas [ADR-0003]")
+    ContainerDb(billing_db, "Billing DB", "PostgreSQL", "Pagos [ADR-0003]")
+}
+
+System_Ext(stripe, "Stripe", "Pasarela de pago")
+System_Ext(maps, "Google Maps", "Mapas")
+System_Ext(notify_ext, "SendGrid/Twilio", "Email/SMS")
+
+Rel(consumer, mobile_app, "Usa", "HTTPS")
+Rel(restaurant, web_dash, "Usa", "HTTPS")
+Rel(courier, courier_app, "Usa", "HTTPS")
+Rel(backoffice, web_dash, "Usa", "HTTPS")
+
+Rel(mobile_app, order_svc, "Confirma pedido", "JSON/HTTPS")
+Rel(mobile_app, delivery_svc, "Consulta tracking", "JSON/HTTPS")
+Rel(web_dash, kitchen_svc, "Acepta/rechaza tickets", "JSON/HTTPS")
+Rel(courier_app, delivery_svc, "Acepta ofertas", "JSON/HTTPS")
+
+Rel(order_svc, order_db, "Lee/Escribe", "JDBC/SQL")
+Rel(kitchen_svc, kitchen_db, "Lee/Escribe", "JDBC/SQL")
+Rel(delivery_svc, delivery_db, "Lee/Escribe", "JDBC/SQL")
+Rel(billing_svc, billing_db, "Lee/Escribe", "JDBC/SQL")
+
+Rel(order_svc, kafka, "Publica OrderCreated, PaymentPending", "async/Kafka")
+Rel(kitchen_svc, kafka, "Consume OrderCreated; publica TicketAccepted", "async/Kafka")
+Rel(delivery_svc, kafka, "Consume ReadyForPickup; publica DeliveryAssigned", "async/Kafka")
+Rel(billing_svc, kafka, "Consume/Produce eventos pago", "async/Kafka")
+Rel(notify_svc, kafka, "Consume eventos estado", "async/Kafka")
+
+Rel(order_svc, legacy, "ACL migración", "JSON/HTTPS")
+Rel(kitchen_svc, legacy, "ACL migración", "JSON/HTTPS")
+Rel(delivery_svc, legacy, "ACL migración", "JSON/HTTPS")
+
+Rel(billing_svc, stripe, "Autoriza cobros", "JSON/HTTPS")
+Rel(delivery_svc, maps, "Calcula rutas", "JSON/HTTPS")
+Rel(notify_svc, notify_ext, "Envía mensajes", "JSON/HTTPS")
