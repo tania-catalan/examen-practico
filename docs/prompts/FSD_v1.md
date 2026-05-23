@@ -65,6 +65,27 @@ Estructura del FSD:
 2. Tabla de UCs (ID, título, actor primario, capacidad PRD, origen).
 3. Detalle de cada UC con los 7 campos siguientes.
 
+4. Métricas (sección obligatoria al final del FSD):
+
+  ## Métricas
+
+  - # de ejecución del prompt: `<run_id | timestamp>`
+  - Nombre y versión del prompt: `<prompt_id> / v1`
+
+  Tabla con los resultados de cada métrica (una fila por cada modificación):
+
+  | Nombre de la métrica | Valor | Insights |
+  | --- | ---: | --- |
+  | UCs entregados (count) | <valor> | <breve insight / acción recomendada> |
+  | % UCs con Given/When/Then | <valor> | <breve insight> |
+  | Trazabilidad (%) | <valor> | <breve insight> |
+  | Cobertura NFRs (%) | <valor> | <breve insight> |
+  | Reducción de iteraciones (%) | <valor> | <insight> |
+  | Ediciones humanas (count) | <valor> | <insight> |
+  | Inventado / Hallucination (%) | <valor> | <insight> |
+
+  Nota: incluir una fila por cada modificación significativa del UC o del conjunto de UCs.
+
 ## 2. Invariantes del prompt
 
 - El FSD debe tener ≥ 5 UCs.

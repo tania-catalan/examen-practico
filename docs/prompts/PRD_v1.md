@@ -67,6 +67,29 @@ Secciones obligatorias del PRD:
 3. Capacidades de negocio (las 7 del Cap 2, cada una con 1 párrafo).
 4. Requisitos no funcionales (≥ 5, cada uno con métrica y origen [Brief §A.4]).
 5. Alcance (qué entra, qué queda fuera).
+6. Métricas (sección obligatoria al final del artefacto generado):
+
+  ## Métricas
+
+  - # de ejecución del prompt: `<run_id | timestamp>`
+  - Nombre y versión del prompt: `<prompt_id> / v1`
+
+  Tabla con los resultados de cada métrica (una fila por cada modificación):
+
+  | Nombre de la métrica | Valor | Insights |
+  | --- | ---: | --- |
+  | Completitud del output (%) | <valor> | <breve insight / acción recomendada> |
+  | Trazabilidad (%) | <valor> | <breve insight> |
+  | Cobertura NFRs (%) | <valor> | <breve insight> |
+  | UCs entregados (count) | <valor> | <breve insight> |
+  | % UCs con Given/When/Then | <valor> | <breve insight> |
+  | Sintaxis Mermaid válida | <true/false> | <breve insight> |
+  | Reducción de iteraciones (%) | <valor> | <breve insight> |
+  | Tiempo hasta convergencia (min) | <valor> | <breve insight> |
+  | Ediciones humanas (count) | <valor> | <breve insight> |
+  | Inventado / Hallucination (%) | <valor> | <breve insight> |
+
+  Nota: rellena una fila por cada modificación relevante del artefacto si procede.
 
 ## 2. Invariantes del prompt
 

@@ -70,12 +70,38 @@ Secciones obligatorias:
 4. Decisión (qué se elige y por qué).
 5. Consecuencias (positivas Y negativas, ambas obligatorias).
 
+6. Métricas (sección obligatoria al final del ADR):
+
+  ## Métricas
+
+  - # de ejecución del prompt: `<run_id | timestamp>`
+  - Nombre y versión del prompt: `<prompt_id> / v1`
+
+  Tabla con los resultados de cada métrica (una fila por cada modificación):
+
+  | Nombre de la métrica | Valor | Insights |
+  | --- | ---: | --- |
+  | Trazabilidad (%) | <valor> | <breve insight / acción recomendada> |
+  | Opciones evaluadas (count) | <valor> | <breve insight> |
+  | Consecuencias (positivas/negativas) documentadas | <yes/no> | <insight> |
+  | Reducción de iteraciones (%) | <valor> | <insight> |
+  | Ediciones humanas (count) | <valor> | <insight> |
+  | Inventado / Hallucination (%) | <valor> | <insight> |
+
+  Nota: La regla de trazabilidad obliga a citar libro/brief/US; cualquier decisión sin trazabilidad será marcada en "Insights".
+
 ## 2. Invariantes del prompt
 
 - El ADR debe tener ≥ 3 opciones evaluadas.
 - El ADR debe tener consecuencias positivas Y negativas.
 - Cada opción debe declarar impacto en al menos 1 NFR del PRD.
 - La decisión debe referenciar al menos 1 capítulo del libro o restricción del brief.
+
+- Regla de trazabilidad obligatoria: cada decisión arquitectónica declarada en el ADR debe poder rastrearse a UNO de los siguientes orígenes (y citarlo explícitamente):
+  1) un capítulo específico del libro "Microservices Patterns" de Chris Richardson;
+  2) una restricción técnica o NFR listada en `docs/contexto.md` (Brief Anexo A §A.4);
+  3) una user story semilla del PRD (US-01, US-02, US-03) o un UC derivado identificado en el FSD.
+  Inventar dominio fuera de FTGO penaliza: no se aceptarán decisiones cuyo único soporte sea una asunción no documentada.
 
 ## 3. *Failure modes* declarados
 
